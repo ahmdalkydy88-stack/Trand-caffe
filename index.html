@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trend Cafe | ترند كافيه</title>
+    <title>ترند كافيه | Trend Cafe - الموصل</title>
     <!-- Google Fonts: Tajawal & Cairo for premium Arabic typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&family=Tajawal:wght@300;500;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap"
         rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
 </head>
@@ -19,38 +19,71 @@
     <div class="bg-gradient"></div>
     <div class="particles" id="particles"></div>
 
+    <!-- Sticky Top Navigation -->
+    <nav class="top-nav" id="topNav">
+        <a href="#home" class="top-nav-logo">
+            <img src="assets/logo_emblem.png" alt="Trend Cafe Logo" class="nav-logo-icon" />
+            <span>ترند كافيه</span>
+        </a>
+        <div class="top-nav-items">
+            <a href="#hookah" class="nav-link" data-section="hookah">أراكيل</a>
+            <a href="#crepes" class="nav-link" data-section="crepes">كريب</a>
+            <a href="#juices" class="nav-link" data-section="juices">عصائر</a>
+            <a href="#mojito" class="nav-link" data-section="mojito">موهيتو</a>
+            <a href="#cold-drinks" class="nav-link" data-section="cold-drinks">باردة</a>
+            <a href="#hot-drinks" class="nav-link" data-section="hot-drinks">ساخنة</a>
+            <a href="#fruit-fresh" class="nav-link" data-section="fruit-fresh">فروت فريش</a>
+        </div>
+    </nav>
+
     <!-- Navigation (Sticky Bottom for Mobile) -->
     <nav class="bottom-nav">
-        <a href="#hookah" class="nav-item">
+        <a href="#hookah" class="nav-item" data-section="hookah" title="الأراكيل">
             <img src="assets/icon_hookah.png" alt="Hookah" />
+            <span>أراكيل</span>
         </a>
-        <a href="#crepes" class="nav-item">
+        <a href="#crepes" class="nav-item" data-section="crepes" title="كريب">
             <img src="assets/icon_crepe.png" alt="Crepes" />
+            <span>كريب</span>
         </a>
-        <a href="#juices" class="nav-item">
+        <a href="#juices" class="nav-item" data-section="juices" title="العصائر">
             <img src="assets/icon_juice.png" alt="Juice" />
+            <span>عصائر</span>
         </a>
-        <a href="#mojito" class="nav-item">
+        <a href="#mojito" class="nav-item" data-section="mojito" title="موهيتو">
             <img src="assets/icon_mojito.png" alt="Mojito" />
+            <span>موهيتو</span>
         </a>
-        <a href="#cold-drinks" class="nav-item">
+        <a href="#cold-drinks" class="nav-item" data-section="cold-drinks" title="مشروبات باردة">
             <img src="assets/icon_cold_drink.png" alt="Cold" />
+            <span>باردة</span>
         </a>
-        <a href="#hot-drinks" class="nav-item">
+        <a href="#hot-drinks" class="nav-item" data-section="hot-drinks" title="مشروبات ساخنة">
             <img src="assets/icon_hot_drink.png" alt="Hot" />
+            <span>ساخنة</span>
+        </a>
+        <a href="#fruit-fresh" class="nav-item" data-section="fruit-fresh" title="فروت فريش">
+            <img src="assets/icon_fruit_fresh.png" alt="Fruit Fresh" />
+            <span>فروت</span>
         </a>
     </nav>
 
     <!-- Hero Section -->
     <header class="hero" id="home">
         <div class="logo-container">
-            <img src="assets/logo.png" alt="Trend Cafe Logo" class="main-logo" id="mainLogo" />
-            <h1 class="hero-title">Trend Cafe</h1>
-            <p class="hero-subtitle">حيث يجتمع الطعم والأناقة</p>
+            <div class="logo-glow"></div>
+            <img src="assets/logo.png" alt="ترند كافيه | Trend Cafe" class="main-logo" id="mainLogo" />
+            <div class="hero-divider">
+                <span class="divider-line"></span>
+                <span class="divider-diamond">◆</span>
+                <span class="divider-line"></span>
+            </div>
+            <p class="hero-subtitle">حيث يجتمع المذاق الراقي بالأجواء الفاخرة</p>
+            <div class="hero-badge">قائمة المشروبات والضيافة</div>
         </div>
-        <div class="scroll-indicator">
+        <a href="#hookah" class="scroll-indicator" aria-label="استكشف القائمة">
             <span></span>
-        </div>
+        </a>
     </header>
 
     <!-- Menu Container -->
@@ -59,8 +92,11 @@
         <!-- Section 1: Hookah (الاراكيل) -->
         <section class="menu-section" id="hookah">
             <div class="section-header">
-                <img src="assets/icon_hookah.png" class="section-icon" alt="Hookah Icon">
+                <div class="icon-wrapper">
+                    <img src="assets/icon_hookah.png" class="section-icon" alt="Hookah Icon">
+                </div>
                 <h2 class="section-title">الأراكيل</h2>
+                <p class="section-desc">أجود أنواع المعسل والنكهات المميزة</p>
             </div>
             <div class="menu-grid" id="hookah-list"></div>
         </section>
@@ -68,8 +104,11 @@
         <!-- Section 2: Crepes (كريب) -->
         <section class="menu-section" id="crepes">
             <div class="section-header">
-                <img src="assets/icon_crepe.png" class="section-icon" alt="Crepe Icon">
+                <div class="icon-wrapper">
+                    <img src="assets/icon_crepe.png" class="section-icon" alt="Crepe Icon">
+                </div>
                 <h2 class="section-title">كريب</h2>
+                <p class="section-desc">أشهى الكريبات المحضرة بأفخر أنواع الشوكولاتة</p>
             </div>
             <div class="menu-grid" id="crepes-list"></div>
         </section>
@@ -77,8 +116,11 @@
         <!-- Section 3: Juices (العصائر) -->
         <section class="menu-section" id="juices">
             <div class="section-header">
-                <img src="assets/icon_juice.png" class="section-icon" alt="Juice Icon">
-                <h2 class="section-title">العصائر</h2>
+                <div class="icon-wrapper">
+                    <img src="assets/icon_juice.png" class="section-icon" alt="Juice Icon">
+                </div>
+                <h2 class="section-title">العصائر الطبيعية</h2>
+                <p class="section-desc">عصائر طبيعية طازجة محليّة ومنعشة</p>
             </div>
             <div class="menu-grid" id="juices-list"></div>
         </section>
@@ -86,8 +128,11 @@
         <!-- Section 4: Mojito (موهيتو) -->
         <section class="menu-section" id="mojito">
             <div class="section-header">
-                <img src="assets/icon_mojito.png" class="section-icon" alt="Mojito Icon">
+                <div class="icon-wrapper">
+                    <img src="assets/icon_mojito.png" class="section-icon" alt="Mojito Icon">
+                </div>
                 <h2 class="section-title">موهيتو</h2>
+                <p class="section-desc">انتعاش فريد بنكهات الفواكه المنعشة والنعناع</p>
             </div>
             <div class="menu-grid" id="mojito-list"></div>
         </section>
@@ -95,8 +140,11 @@
         <!-- Section 5: Cold Drinks (مشروبات باردة) -->
         <section class="menu-section" id="cold-drinks">
             <div class="section-header">
-                <img src="assets/icon_cold_drink.png" class="section-icon" alt="Cold Drink Icon">
+                <div class="icon-wrapper">
+                    <img src="assets/icon_cold_drink.png" class="section-icon" alt="Cold Drink Icon">
+                </div>
                 <h2 class="section-title">مشروبات باردة</h2>
+                <p class="section-desc">مشروبات غازية ومنعشة تروي عطشك</p>
             </div>
             <div class="menu-grid" id="cold-drinks-list"></div>
         </section>
@@ -104,8 +152,11 @@
         <!-- Section 6: Hot Drinks (مشروبات ساخنة) -->
         <section class="menu-section" id="hot-drinks">
             <div class="section-header">
-                <img src="assets/icon_hot_drink.png" class="section-icon" alt="Hot Drink Icon">
+                <div class="icon-wrapper">
+                    <img src="assets/icon_hot_drink.png" class="section-icon" alt="Hot Drink Icon">
+                </div>
                 <h2 class="section-title">مشروبات ساخنة</h2>
+                <p class="section-desc">قهوة مختصة وشاي بنكهات أصيلة دافئة</p>
             </div>
             <div class="menu-grid" id="hot-drinks-list"></div>
         </section>
@@ -113,8 +164,11 @@
         <!-- Section 7: Fruit Fresh (فروت فريش) -->
         <section class="menu-section" id="fruit-fresh">
             <div class="section-header">
-                <img src="assets/icon_fruit_fresh.png" class="section-icon" alt="Fruit Icon">
+                <div class="icon-wrapper">
+                    <img src="assets/icon_fruit_fresh.png" class="section-icon" alt="Fruit Icon">
+                </div>
                 <h2 class="section-title">فروت فريش</h2>
+                <p class="section-desc">خلطات استوائية وسموذي منعش بنكهات خاصة</p>
             </div>
             <div class="menu-grid" id="fruit-fresh-list"></div>
         </section>
@@ -122,7 +176,13 @@
     </main>
 
     <footer class="footer">
-        <p>&copy; 2026 Trend Cafe. All rights reserved.</p>
+        <div class="footer-content">
+            <img src="assets/logo_emblem.png" class="footer-emblem" alt="Trend Cafe Emblem" />
+            <h3 class="footer-title">ترند كافيه • TREND CAFE</h3>
+            <p class="footer-location">الموصل - العراق | تأسس 2024</p>
+            <div class="footer-badge">شكرًا لزيارتكم! نتمنى لكم أسعد الأوقات وأطيب اللحظات</div>
+            <p class="footer-copy">&copy; 2026 جميع الحقوق محفوظة لـ ترند كافيه</p>
+        </div>
     </footer>
 
     <script src="main.js"></script>

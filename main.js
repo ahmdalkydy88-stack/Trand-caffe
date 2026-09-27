@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
     // Menu Data
     const menuData = {
@@ -25,8 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             { name: 'رمان', price: '2000' },
             { name: 'برتقال', price: '2000' },
             { name: 'ليمون', price: '2000' },
-            { name: 'برتقال وليمون', price: '2000' },
-            { name: 'نيتوز', price: '750' }
+            { name: 'برتقال وليمون', price: '2000' }
         ],
         mojito: [
             { name: 'موهيتو بلوبيري', price: '1500' },
@@ -64,35 +62,37 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
 
-    // Populate Menu
+    // Format price with Iraqi Dinar currency badge
+    function formatPrice(price) {
+        return `${parseInt(price, 10).toLocaleString('en-US')} <span class="currency">د.ع</span>`;
+    }
+
+    // Populate Menu Items
     for (const [sectionId, items] of Object.entries(menuData)) {
         const container = document.getElementById(`${sectionId}-list`);
         if (container) {
+            container.innerHTML = '';
             items.forEach((item, index) => {
                 const itemEl = document.createElement('div');
                 itemEl.className = 'menu-item';
-                itemEl.style.animationDelay = `${index * 0.1}s`; // Staggered delay handled in CSS if needed, or here
-                
+                itemEl.style.transitionDelay = `${Math.min(index * 0.05, 0.3)}s`;
+
                 itemEl.innerHTML = `
-                    <div class="item-name">${item.name}</div>
-                    <div class="item-price">${formatPrice(item.price)}</div>
+                    <span class="item-name">${item.name}</span>
+                    <span class="item-price">${formatPrice(item.price)}</span>
                 `;
                 container.appendChild(itemEl);
             });
         }
     }
 
-    // format price helper
-    function formatPrice(price) {
-        return parseInt(price).toLocaleString('en-US');
-    }
-
-    // Scroll Animations (Intersection Observer)
+    // Scroll Animations (Intersection Observer for sections)
     const observerOptions = {
-        threshold: 0.1
+        threshold: 0.12,
+        rootMargin: '0px 0px -50px 0px'
     };
 
-    const observer = new IntersectionObserver((entries) => {
+    const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
@@ -100,7 +100,57 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    document.querySelectorAll('.menu-section').forEach(section => {
-        observer.observe(section);
+    const sections = document.querySelectorAll('.menu-section');
+    sections.forEach(section => {
+        sectionObserver.observe(section);
     });
+
+    // Top Navigation & Active Section Highlighting
+    const topNav = document.getElementById('topNav');
+    const topLinks = document.querySelectorAll('.top-nav-items a');
+    const bottomLinks = document.querySelectorAll('.bottom-nav .nav-item');
+
+    function updateActiveNav() {
+        const scrollPosition = window.scrollY;
+
+        // Toggle Top Nav Visibility
+        if (scrollPosition > 260) {
+            topNav.classList.add('visible');
+        } else {
+            topNav.classList.remove('visible');
+        }
+
+        // Determine current active section
+        let currentSectionId = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 180;
+            const sectionHeight = section.offsetHeight;
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                currentSectionId = section.getAttribute('id');
+            }
+        });
+
+        // Update active class on top nav links
+        topLinks.forEach(link => {
+            const sectionAttr = link.getAttribute('data-section');
+            if (sectionAttr === currentSectionId) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+
+        // Update active class on bottom nav links
+        bottomLinks.forEach(link => {
+            const sectionAttr = link.getAttribute('data-section');
+            if (sectionAttr === currentSectionId) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', updateActiveNav, { passive: true });
+    updateActiveNav();
 });
